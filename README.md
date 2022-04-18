@@ -76,8 +76,8 @@ To quicken the setup time, a Docker image is recommended so that you do not have
      sudo systemctl stop docker
      sudo mkdir -p disks/docker
      sudo dd if=/dev/zero of=~/disco-diffusion/docker.img iflag=fullblock bs=1M count=60000 && sync
-     sudo mkfs ext3 -F disco-diffusion/docker.img
-     sudo mount -o loop disco-diffusion/docker.img disks/docker
+     sudo mkfs ext3 -F ~/disco-diffusion/docker.img
+     sudo mount -o loop ~/disco-diffusion/docker.img disks/docker
      sudo mv /var/lib/docker ~/disks/docker
      sudo ln -s ~/disks/docker/docker /var/lib/docker
      sudo systemctl start docker
