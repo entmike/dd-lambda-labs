@@ -71,3 +71,18 @@ STOP: Make sure you have completed the initial steps outlined [here](README.md) 
         -e steps=500 \
         disco-diffusion:5.1 python disco-diffusion-1/disco.py
      ```
+     
+ ## Terminating your GPU Instance
+
+  Once you are done with your workloads, as as a reminder, it is important that you unmount your Docker volume and do a clean shutdown to avoid file corruption for your next Docker launch session.
+
+  1. In the **Cloud IDE** (aka Jupyter), click **Terminal** in the Launcher tab.  Type the following:
+
+     ```ssh
+     sudo systemctl stop docker
+     sudo umount /var/lib/docker
+     sudo shutdown now
+     ```
+     
+  2. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
+  3. Checkmark the instance that you want to terminate, and then click the **Terminate** button at the top-right of the page.
