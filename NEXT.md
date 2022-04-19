@@ -36,7 +36,7 @@ STOP: Make sure you have completed the initial steps outlined [here](README.md) 
      ```
      Wait for about 5 mins and re-enter your **Cloud IDE**.
      
-  4. Next, we need to switch back to our persistent disk for Docker that we can save between reboots:
+  4. Next, we need to switch back to our persistent disk for Docker:
 
      ```ssh
      sudo bash
