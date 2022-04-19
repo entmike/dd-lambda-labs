@@ -42,6 +42,12 @@ STOP: Make sure you have completed the initial steps outlined [here](README.md) 
      systemctl start docker
      exit
      ```
+  2.5 Reboot.
+     ```
+     sudo reboot
+     ```
+     Wait for about 5 mins and re-enter your **Cloud IDE**.
+  
   3. Confirm that your previously built images are still present by typing `sudo docker images`.  You should see something like this:
 
      ```
