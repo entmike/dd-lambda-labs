@@ -21,7 +21,7 @@ STOP: Make sure you have completed the initial steps outlined [here](README.md) 
 
   1. In the **Cloud IDE** (aka Jupyter), click **Terminal** in the Launcher tab.  This will open a terminal session in your GPU Instance.
 
-  2. Set up Lambda Stack (10 mins):
+  2. Set up Lambda Stack (10-30 mins):
      ```
      LAMBDA_REPO=$(mktemp) && \
        wget -O${LAMBDA_REPO} https://lambdalabs.com/static/misc/lambda-stack-repo.deb && \
