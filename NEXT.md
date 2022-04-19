@@ -17,7 +17,7 @@ STOP: Make sure you have completed the initial steps outlined [here](README.md) 
 
   ### Change the Docker persistance location to your filesystem
 
-  This will allow us to save the image we are about to build in persistent filesystem, dramatically speeding up subsequent jobs you may wish to run later.
+  This will allow us to restore the image we built previously in persistent filesystem, dramatically saving time by avoiding a rebuild or pull from a Docker registry.
 
   1. In the **Cloud IDE** (aka Jupyter), click **Terminal** in the Launcher tab.  This will open a terminal session in your GPU Instance.
 
