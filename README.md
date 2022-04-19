@@ -39,11 +39,6 @@ The purpose of this documentation is to lay out the quickest steps to get Disco 
 
   Once your instance has changed from status **Booting** to **?**, your GPU Instance is ready to use.
 
-## Terminating a GPU Instance
-
-  1. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
-  2. Checkmark the instance that you want to terminate, and then click the **Terminate** button at the top-right of the page.
-
 ## Troubleshooting a GPU Instance
 
 If you believe that your GPU Instance has become non-responsive, you can hard restart it.
@@ -53,7 +48,7 @@ If you believe that your GPU Instance has become non-responsive, you can hard re
 
 ## Accessing your GPU Instance
 
-There are a few different ways that you can connect to your instance.  For sake of simplicity, we will cover connecting to the **Cloud IDE**, as it requires no installation and can be access solely from a browser.
+There are a few different ways that you can connect to your instance.  For sake of simplicity, we will cover connecting to the **Cloud IDE**, as it requires no installation and can be accessed solely from a browser.
 
   1. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
   2. Click the **Launch (Beta)** link next to your running instance.
@@ -73,14 +68,23 @@ To quicken the setup time, a Docker image is recommended so that you do not have
   2. First, we need to create a persistent disk for Docker that we can save between reboots:
 
      ```ssh
-     sudo systemctl stop docker
-     sudo mkdir -p disks/docker
-     sudo dd if=/dev/zero of=~/disco-diffusion/docker.img iflag=fullblock bs=1M count=60000 && sync
-     sudo mkfs ext3 -F ~/disco-diffusion/docker.img
-     sudo mount -o loop ~/disco-diffusion/docker.img disks/docker
-     sudo mv /var/lib/docker ~/disks/docker
-     sudo ln -s ~/disks/docker/docker /var/lib/docker
-     sudo systemctl start docker
+     mkdir -p /home/ubuntu/disco-diffusion/init_images
+     mkdir -p /home/ubuntu/disco-diffusion/images_out
+     sudo bash
+     systemctl stop docker
+     mkdir -p /home/ubuntu/disco-diffusion/docker
+     dd if=/dev/zero of=/home/ubuntu/disco-diffusion/docker.img iflag=fullblock bs=1M count=60000 && \
+       sync && \
+       sudo mkfs ext3 -F /home/ubuntu/disco-diffusion/docker.img
+     mkdir -p /home/ubuntu/disks/docker
+     mount -o loop /home/ubuntu/disco-diffusion/docker.img /home/ubuntu/disks/docker
+     cd /var/lib/docker && mv * /home/ubuntu/disks/docker && cd -
+     rmdir /var/lib/docker
+     mkdir /var/lib/docker
+     umount disks/docker/
+     mount -o loop /home/ubuntu/disco-diffusion/docker.img /var/lib/docker
+     systemctl start docker
+     exit
      ```
 
 ### Clone the Git Repo and build the Docker Image
@@ -102,3 +106,21 @@ To quicken the setup time, a Docker image is recommended so that you do not have
      sudo docker build -t disco-diffusion:5.1 .
      ```
      This step of the build will take the previous half of your build containing the downloaded model files, and then build the DD environment for you.  This step takes around 15 minutes, depending on internet speeds, etc.
+
+  3. Once this part of the build is completed, the hard part is over.  Barring you completely tanking your `disco-diffusion` filesystem, or pulling a new Docker build spec, you will not have to run these initial steps again.  At this point, you may terminate your GPU instance.
+
+  ## Terminating a GPU Instance
+
+  It is important that you unmount your Docker volume and do a clean shutdown to avoid file corruption for your next Docker launch session.
+
+  1. In the **Cloud IDE** (aka Jupyter), click **Terminal** in the Launcher tab.  Type the following:
+
+     ```ssh
+     sudo systemctl stop docker
+     sudo umount /var/lib/docker
+     sudo shutdown now
+     ```
+  1. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
+  2. Checkmark the instance that you want to terminate, and then click the **Terminate** button at the top-right of the page.
+
+  For next steps, please read the [NEXT](READMENEXT.md) document.  At this point, you may terminate your GPU instance until you are ready to proceed with the next part.
