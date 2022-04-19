@@ -124,4 +124,4 @@ To quicken the setup time, a Docker image is recommended so that you do not have
   1. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
   2. Checkmark the instance that you want to terminate, and then click the **Terminate** button at the top-right of the page.
 
-  For next steps, please read the [NEXT](READMENEXT.md) document.  At this point, you may terminate your GPU instance until you are ready to proceed with the next part.
+  For next steps, please read the [NEXT](NEXT.md) document.  At this point, you may terminate your GPU instance until you are ready to proceed with the next part.
