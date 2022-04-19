@@ -118,6 +118,7 @@ To quicken the setup time, a Docker image is recommended so that you do not have
      ```ssh
      sudo systemctl stop docker
      sudo umount /var/lib/docker
+     sudo cp /home/ubuntu/disco-diffusion/docker.img /home/ubuntu/disco-diffusion/docker-backup.img
      sudo shutdown now
      ```
   1. Visit the [Lambda Labs GPU Instances](https://lambdalabs.com/cloud/dashboard/instances) page.
