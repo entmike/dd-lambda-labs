@@ -2,6 +2,8 @@
 
 The purpose of this documentation is to lay out the quickest steps to get Disco Diffusion running using Lambda Labs.
 
+Dockerfile that is used can be found here: https://github.com/entmike/disco-diffusion-1/tree/main/docker
+
 ## Pre-requisites
 
   - A Lambda Labs account
