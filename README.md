@@ -96,7 +96,6 @@ To quicken the setup time, a Docker image is recommended so that you do not have
      cd ~/disco-diffusion
      git clone https://github.com/entmike/disco-diffusion-1.git
      cd disco-diffusion-1
-     git checkout no-notebook
      cd docker/prep
      sudo docker build -t disco-diffusion-prep:5.1 .
      ```
