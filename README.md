@@ -94,6 +94,7 @@ To quicken the setup time, a Docker image is recommended so that you do not have
   1. Let's clone the Git repo that contains the Docker build we need:
      ```ssh
      cd ~/disco-diffusion
+     rm -Rf disco-diffusion-1
      git clone https://github.com/entmike/disco-diffusion-1.git
      cd disco-diffusion-1
      cd docker/prep
